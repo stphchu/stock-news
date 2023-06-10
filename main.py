@@ -7,6 +7,7 @@ from twilio.rest import Client
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
+PERCENT_THRESHOLD = 5
 
 load_dotenv("venv/.env")
 alphav_api_key = os.getenv("STOCK_API_KEY")
@@ -40,7 +41,7 @@ if price_change_percent < 0:
 else:
     change_icon = "🔺"
 
-if abs(price_change_percent) >= 2:
+if abs(price_change_percent) >= PERCENT_THRESHOLD:
     news_url = "https://newsapi.org/v2/everything?"
     news_params = {
         "q": COMPANY_NAME,
